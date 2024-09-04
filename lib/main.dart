@@ -79,12 +79,12 @@ class _SeleccionarPizzaState extends State<SeleccionarPizza> {
 
   void SeccionPizza(String tipo_pizza) {
     if (tipo_pizza == 'Vegetariana') {
-      setState((){
+      setState(() {
         tipo_pizza_seleccion = 0;
         page = 1;
       });
     } else {
-      setState((){
+      setState(() {
         tipo_pizza_seleccion = 1;
         page = 1;
       });
@@ -99,52 +99,51 @@ class _SeleccionarPizzaState extends State<SeleccionarPizza> {
     },
     {
       'tipo_pizza': 'No Vegeriana',
-      'sabores': ['Peperoni', 'Salchichas'],
+      'sabores': ['Peperoni', 'Salchichas italiana'],
     },
   ];
 
   Widget sabores_pizza_widget() {
-  List<Widget> botones = [];
-  for (var pizza_seleccionada in pizza[tipo_pizza_seleccion]['sabores']) {
-    botones.add(
-      ElevatedButton(
-        onPressed: () {
-          print('seccion pizza $pizza_seleccionada');
-        },
-        child: Text(pizza_seleccionada),
-      ),
+    List<Widget> botones = [];
+    for (var pizza_seleccionada in pizza[tipo_pizza_seleccion]['sabores']) {
+      botones.add(
+        ElevatedButton(
+          onPressed: () {
+            print('seccion pizza $pizza_seleccionada');
+          },
+          child: Text(pizza_seleccionada),
+        ),
+      );
+      botones.add(const SizedBox(height: 10));
+    }
+    return Column(
+      children: botones,
     );
-    botones.add(const SizedBox(height: 10));
   }
-  return Column(
-    children: botones,
-  );
-}
 
-Widget tipo_pizza_widget() {
-  return Column(
-    children: [
-      ElevatedButton(
-            onPressed: () {
-              SeccionPizza('Vegetariana');
-            },
-            child: Text('Vegetariana'),
-          ),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              SeccionPizza('No Vegetariana');
-            },
-            child: Text('No vegetariana'),
-          ),
-    ],
-  );
-}
+  Widget tipo_pizza_widget() {
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            SeccionPizza('Vegetariana');
+          },
+          child: Text('Vegetariana'),
+        ),
+        const SizedBox(height: 10),
+        ElevatedButton(
+          onPressed: () {
+            SeccionPizza('No Vegetariana');
+          },
+          child: Text('No vegetariana'),
+        ),
+      ],
+    );
+  }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     switch (page) {
       case 0:
         return Center(
@@ -166,7 +165,6 @@ Widget tipo_pizza_widget() {
       default:
         return const Placeholder();
     }
-    
   }
 }
 
